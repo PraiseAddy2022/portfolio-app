@@ -16,6 +16,6 @@ jobs:
          
   
        - name: Push image to registry
-         run: docker push ${{secrets.DOCKER_USERNAME}}/portfolioci  
+         run: docker push ${{secrets.DOCKER_PASSWORD}}/portfolioci  
 
 
