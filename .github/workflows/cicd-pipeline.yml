@@ -36,6 +36,6 @@ jobs:
             script: |
               docker rm -f profile || echo " container not found, skip removal ."
               docker rmi -f ${{secrets.DOCKER_USERNAME}}/portfolioci || echo "image do not exist"
-              docker run -d --name new -p 8080:80 ${{secrets.DOCKER_USERNAME}}/portfolioci
+              docker run -d --name profile -p 8080:80 ${{secrets.DOCKER_USERNAME}}/portfolioci
       
 
