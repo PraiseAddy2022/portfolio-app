@@ -22,5 +22,20 @@ jobs:
          run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/portfolioci:${{github.run_number}}
           docker push ${{ secrets.DOCKER_USERNAME }}/portfolioci 
-
+    
+   deploy:
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+        - name: ssh to linux and run container
+          uses: appleboy/ssh-action@v1
+          with:
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.SSH_USERNAME }}
+            key: ${{ secrets.PRAVITE_KEY}}
+            script: |
+              docker rm -f profile || echo " container not found, skip removal ."
+              docker rmi -f ${{secrets.DOCKER_USERNAME}}/portfolioci || echo "image do not exist"
+              docker run -d --name profile -p 8080:80 ${{secrets.DOCKER_USERNAME}}/portfolioci
+      
 
