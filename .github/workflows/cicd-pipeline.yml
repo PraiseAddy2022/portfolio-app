@@ -4,10 +4,12 @@ jobs:
    build:
     runs-on: ubuntu-latest
     steps:
-       - name: uptime
-         run: uptime
-       - name: number of processor
-         run: nproc
+       - name: checkout code
+         uses: actions/checkout@v6
+       - name: build image
+         run: docker build -t praiseaddy/portfolioci .
+       - name: list image
+         run: docker images
          
    test:
     needs: build
