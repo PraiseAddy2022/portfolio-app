@@ -32,7 +32,7 @@ jobs:
           with:
             host: ${{ secrets.HOST }}
             username: ${{ secrets.SSH_USERNAME }}
-            key: ${{ secrets.PRAVITE_KEY}}
+            key: ${{ secrets.PRIVATE_KEY}}
             script: |
               docker rm -f profile || echo " container not found, skip removal ."
               docker rmi -f ${{secrets.DOCKER_USERNAME}}/portfolioci || echo "image do not exist"
