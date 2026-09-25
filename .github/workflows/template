@@ -40,4 +40,3 @@ jobs:
               docker rmi -f ${{secrets.DOCKER_USERNAME}}/portfolioci || echo "image do not exist"
               docker run -d --name profiles -p 8080:80 ${{secrets.DOCKER_USERNAME}}/portfolioci
       
-
